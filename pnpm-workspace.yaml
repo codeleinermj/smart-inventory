@@ -1,0 +1,5 @@
+packages:
+  - "apps/api"
+  - "apps/web"
+  - "packages/*"
+  # apps/ml is a Python service — intentionally excluded from pnpm workspaces

@@ -1,0 +1,16 @@
+{
+  "name": "smart-inventory",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Smart Inventory: Sistema de Gestion con Prediccion de Stock",
+  "scripts": {
+    "dev": "echo 'Run from individual workspace, e.g. pnpm --filter api dev'",
+    "test": "pnpm -r test",
+    "lint": "pnpm -r lint"
+  },
+  "engines": {
+    "node": ">=20.11.0",
+    "pnpm": ">=9.0.0"
+  },
+  "packageManager": "pnpm@9.0.0"
+}
