@@ -41,6 +41,26 @@ jobs:
   test-node:
     name: Test Node
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: smart_inv
+          POSTGRES_PASSWORD: smart_inv
+          POSTGRES_DB: smart_inv_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U smart_inv"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    env:
+      DATABASE_URL: postgresql://smart_inv:smart_inv@localhost:5432/smart_inv_test
+      JWT_SECRET: ci-test-secret-32chars-padding-pad
+      JWT_EXPIRES_IN: 1h
+      BCRYPT_ROUNDS: "4"
+      NODE_ENV: test
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v3
@@ -51,6 +71,7 @@ jobs:
           node-version: 20.11.1
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter api db:migrate
       - run: pnpm --filter api test
 
   lint-python:
