@@ -8,3 +8,6 @@ export interface ApiError {
   message: string;
   details?: Record<string, unknown>;
 }
+
+export * from "./auth.js";
+export * from "./products.js";

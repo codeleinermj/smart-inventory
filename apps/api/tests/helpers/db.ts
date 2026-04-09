@@ -1,10 +1,15 @@
-/**
- * Test helpers for database operations.
- * Phase 2 will implement these properly once the schema is defined.
- */
+import { sql } from "drizzle-orm";
+import { getDb } from "../../src/adapters/db.js";
 
+/**
+ * Truncates every domain table to give each test a clean slate.
+ * RESTART IDENTITY isn't strictly needed (we use uuids), but CASCADE
+ * is essential because future foreign keys would otherwise block.
+ *
+ * Tables are listed explicitly so we never wipe drizzle's `__drizzle_migrations`.
+ */
 export async function truncateAllTables(): Promise<void> {
-  throw new Error(
-    "Not implemented yet — Phase 2 will fill this in"
+  await getDb().execute(
+    sql`TRUNCATE TABLE products, users RESTART IDENTITY CASCADE`
   );
 }
