@@ -10,7 +10,7 @@ handler = logging.StreamHandler()
 formatter = JsonFormatter("%(asctime)s %(name)s %(levelname)s %(message)s")
 handler.setFormatter(formatter)
 logger.addHandler(handler)
-logger.setLevel(os.getenv("LOG_LEVEL", "INFO"))
+logger.setLevel(os.getenv("LOG_LEVEL", "INFO").upper())
 
 
 def init_sentry() -> None:

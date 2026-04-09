@@ -16,11 +16,28 @@ const envSchema = z.object({
   // Database — optional so tests can run without a real DB
   DATABASE_URL: z.string().url().optional(),
 
-  // Optional services
-  REDIS_URL: z.string().url().optional(),
-  JWT_SECRET: z.string().min(1).optional(),
-  ML_SERVICE_URL: z.string().url().optional(),
-  SENTRY_DSN: z.string().url().optional(),
+  // Optional services. Empty strings are coerced to undefined so that
+  // docker-compose's `${VAR:-}` default (which expands to "") doesn't fail validation.
+  REDIS_URL: z
+    .string()
+    .url()
+    .optional()
+    .or(z.literal("").transform(() => undefined)),
+  JWT_SECRET: z
+    .string()
+    .min(1)
+    .optional()
+    .or(z.literal("").transform(() => undefined)),
+  ML_SERVICE_URL: z
+    .string()
+    .url()
+    .optional()
+    .or(z.literal("").transform(() => undefined)),
+  SENTRY_DSN: z
+    .string()
+    .url()
+    .optional()
+    .or(z.literal("").transform(() => undefined)),
 });
 
 const parsed = envSchema.safeParse(process.env);

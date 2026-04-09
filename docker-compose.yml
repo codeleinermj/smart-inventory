@@ -3,9 +3,9 @@ services:
     image: postgres:16-alpine
     container_name: smart-inv-postgres
     environment:
-      POSTGRES_USER: smart_inv
-      POSTGRES_PASSWORD: smart_inv
-      POSTGRES_DB: smart_inv
+      POSTGRES_USER: ${POSTGRES_USER:-smart_inv}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-smart_inv}
+      POSTGRES_DB: ${POSTGRES_DB:-smart_inv}
     ports:
       # Host 5433 -> container 5432 (avoids conflict with other local Postgres instances)
       - "5433:5432"
@@ -35,12 +35,13 @@ services:
       dockerfile: apps/api/Dockerfile
     container_name: smart-inv-api
     environment:
-      NODE_ENV: development
-      LOG_LEVEL: info
-      DATABASE_URL: postgresql://smart_inv:smart_inv@postgres:5432/smart_inv
+      NODE_ENV: ${NODE_ENV:-development}
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+      DATABASE_URL: postgresql://${POSTGRES_USER:-smart_inv}:${POSTGRES_PASSWORD:-smart_inv}@postgres:5432/${POSTGRES_DB:-smart_inv}
       REDIS_URL: redis://redis:6379
       ML_SERVICE_URL: http://ml:8000
-      JWT_SECRET: dev-secret-replace-me
+      JWT_SECRET: ${JWT_SECRET:?JWT_SECRET is required — copy .env.example to .env and set a real value}
+      SENTRY_DSN: ${SENTRY_DSN:-}
     ports:
       - "3001:3001"
     depends_on:
@@ -61,7 +62,8 @@ services:
       dockerfile: Dockerfile
     container_name: smart-inv-ml
     environment:
-      LOG_LEVEL: INFO
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+      SENTRY_DSN: ${SENTRY_DSN:-}
     ports:
       - "8000:8000"
     depends_on:
