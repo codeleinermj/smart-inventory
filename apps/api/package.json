@@ -20,7 +20,7 @@
     "@smart-inv/shared-types": "workspace:*",
     "bcryptjs": "^2.4.3",
     "dotenv": "^16.4.5",
-    "drizzle-orm": "^0.44.7",
+    "drizzle-orm": "^0.45.2",
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
     "pg": "^8.11.5",
