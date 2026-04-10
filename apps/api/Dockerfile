@@ -10,8 +10,8 @@ COPY package.json pnpm-workspace.yaml pnpm-lock.yaml .npmrc ./
 COPY apps/api/package.json ./apps/api/
 COPY packages/shared-types/package.json ./packages/shared-types/
 
-# Install api workspace deps (also creates the workspace symlink to shared-types)
-RUN pnpm install --filter api --frozen-lockfile
+# Install deps for api AND shared-types (shared-types needs zod at runtime via tsx).
+RUN pnpm install --filter api --filter "@smart-inv/shared-types" --frozen-lockfile
 
 # Copy source. node_modules is excluded via .dockerignore, so pnpm's install layer is preserved.
 COPY apps/api/ ./apps/api/
