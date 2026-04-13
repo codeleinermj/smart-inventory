@@ -8,6 +8,13 @@
       "when": 1775746791662,
       "tag": "0000_fixed_supernaut",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1744574400000,
+      "tag": "0001_stock_movements",
+      "breakpoints": true
     }
   ]
 }

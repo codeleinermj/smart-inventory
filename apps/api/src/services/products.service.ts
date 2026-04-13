@@ -14,6 +14,8 @@ export async function list(query: ListProductsQuery): Promise<{
   const { items, total } = await productsRepo.list({
     limit: query.limit,
     offset: query.offset,
+    search: query.search,
+    status: query.status,
   });
   return { data: items, total };
 }

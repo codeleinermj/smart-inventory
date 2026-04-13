@@ -20,7 +20,7 @@ import { apiFetch } from "../api";
 
 export const productsKeys = {
   all: ["products"] as const,
-  list: (params: { limit: number; offset: number }) =>
+  list: (params: Record<string, unknown>) =>
     ["products", "list", params] as const,
   detail: (id: string) => ["products", "detail", id] as const,
 };
@@ -28,19 +28,25 @@ export const productsKeys = {
 interface ListParams {
   limit?: number;
   offset?: number;
+  search?: string;
+  status?: "all" | "low" | "ok";
 }
 
 export function useProducts(params: ListParams = {}) {
   const limit = params.limit ?? 50;
   const offset = params.offset ?? 0;
+  const search = params.search;
+  const status = params.status ?? "all";
 
   return useQuery({
-    queryKey: productsKeys.list({ limit, offset }),
+    queryKey: productsKeys.list({ limit, offset, search, status }),
     queryFn: ({ signal }) => {
       const qs = new URLSearchParams({
         limit: String(limit),
         offset: String(offset),
+        status,
       });
+      if (search) qs.set("search", search);
       return apiFetch<ListProductsResponse>(`/api/products?${qs.toString()}`, {
         signal,
       });

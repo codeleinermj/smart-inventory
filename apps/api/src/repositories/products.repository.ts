@@ -1,4 +1,4 @@
-import { and, asc, count, eq, isNull, sql } from "drizzle-orm";
+import { and, asc, count, eq, isNull, lte, sql, or, ilike } from "drizzle-orm";
 import { getDb } from "../adapters/db.js";
 import {
   products,
@@ -16,6 +16,8 @@ import {
 export interface ListOptions {
   limit: number;
   offset: number;
+  search?: string;
+  status?: "all" | "low" | "ok";
 }
 
 export interface ListResult {
@@ -28,15 +30,32 @@ const activeFilter = isNull(products.deletedAt);
 export async function list(opts: ListOptions): Promise<ListResult> {
   const db = getDb();
 
+  const filters = [activeFilter];
+
+  if (opts.search && opts.search.trim()) {
+    const term = `%${opts.search.trim()}%`;
+    filters.push(
+      or(ilike(products.name, term), ilike(products.sku, term))!
+    );
+  }
+
+  if (opts.status === "low") {
+    filters.push(lte(products.stock, products.minStock));
+  } else if (opts.status === "ok") {
+    filters.push(sql`${products.stock} > ${products.minStock}`);
+  }
+
+  const where = and(...filters);
+
   const [items, totals] = await Promise.all([
     db
       .select()
       .from(products)
-      .where(activeFilter)
+      .where(where)
       .orderBy(asc(products.createdAt))
       .limit(opts.limit)
       .offset(opts.offset),
-    db.select({ value: count() }).from(products).where(activeFilter),
+    db.select({ value: count() }).from(products).where(where),
   ]);
 
   return { items, total: totals[0]?.value ?? 0 };

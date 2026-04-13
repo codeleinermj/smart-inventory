@@ -9,7 +9,7 @@ if (!url) {
 export default defineConfig({
   // Glob over individual schema files — drizzle-kit uses CJS resolution and
   // does not understand `.js` extension imports inside index.ts barrel files.
-  schema: "./src/db/schema/{users,products}.ts",
+  schema: "./src/db/schema/{users,products,movements}.ts",
   out: "./drizzle",
   dialect: "postgresql",
   dbCredentials: {

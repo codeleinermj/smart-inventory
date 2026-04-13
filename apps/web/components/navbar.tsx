@@ -21,16 +21,33 @@ export function Navbar() {
       className="sticky top-0 z-30 border-b border-[var(--color-border)] bg-[var(--color-bg)]/80 backdrop-blur-md"
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
-        <Link
-          href="/products"
-          className="flex items-center gap-2 text-[var(--color-fg)]"
-        >
-          <span
-            aria-hidden="true"
-            className="h-7 w-7 rounded-lg bg-gradient-to-br from-[var(--color-brand)] to-[var(--color-accent)] shadow-[0_0_20px_var(--color-brand-glow)]"
-          />
-          <span className="font-semibold tracking-tight">Smart Inventory</span>
-        </Link>
+        <div className="flex items-center gap-6">
+          <Link
+            href="/products"
+            className="flex items-center gap-2 text-[var(--color-fg)]"
+          >
+            <span
+              aria-hidden="true"
+              className="h-7 w-7 rounded-lg bg-gradient-to-br from-[var(--color-brand)] to-[var(--color-accent)] shadow-[0_0_20px_var(--color-brand-glow)]"
+            />
+            <span className="font-semibold tracking-tight">Smart Inventory</span>
+          </Link>
+
+          <nav className="hidden md:flex items-center gap-1">
+            <Link
+              href="/dashboard"
+              className="px-3 py-1.5 rounded-lg text-sm text-[var(--color-fg-muted)] hover:text-[var(--color-fg)] hover:bg-[var(--color-bg-elevated)] transition-colors"
+            >
+              Dashboard
+            </Link>
+            <Link
+              href="/products"
+              className="px-3 py-1.5 rounded-lg text-sm text-[var(--color-fg-muted)] hover:text-[var(--color-fg)] hover:bg-[var(--color-bg-elevated)] transition-colors"
+            >
+              Productos
+            </Link>
+          </nav>
+        </div>
 
         <div className="flex items-center gap-4">
           {user && (
