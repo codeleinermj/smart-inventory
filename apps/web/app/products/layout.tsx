@@ -10,7 +10,7 @@ export default function ProductsLayout({ children }: { children: ReactNode }) {
   return (
     <div className="min-h-screen">
       <Navbar />
-      <main className="mx-auto max-w-6xl px-6 py-10">{children}</main>
+      <main className="mx-auto max-w-6xl px-6 pt-20 pb-10">{children}</main>
     </div>
   );
 }

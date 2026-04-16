@@ -32,15 +32,16 @@
 
 /* ----------- Reset / base layer ----------- */
 @layer base {
-  html,
-  body {
-    height: 100%;
+  html {
+    min-height: 100%;
   }
 
   body {
-    background:
-      radial-gradient(ellipse 80% 50% at 50% -20%, var(--color-brand-glow), transparent),
-      var(--color-bg);
+    background-color: var(--color-bg);
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -20%, var(--color-brand-glow), transparent);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     color: var(--color-fg);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
@@ -89,6 +90,15 @@
   .glow-brand {
     box-shadow: var(--shadow-glow);
   }
+}
+
+/* ----------- Animations ----------- */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
 }
 
 /* ----------- Reduced motion ----------- */

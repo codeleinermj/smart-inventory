@@ -2,7 +2,6 @@
 
 import { useState, useCallback } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
 import { useProducts, useDeleteProduct } from "@/lib/client/hooks/use-products";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -149,13 +148,7 @@ export default function ProductsPage() {
 
       {/* Grid */}
       {data && data.data.length > 0 && (
-        <motion.div
-          initial="hidden"
-          animate="show"
-          variants={{ hidden: {}, show: { transition: { staggerChildren: 0.04 } } }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
-        >
-          <AnimatePresence mode="popLayout">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {data.data.map((p) => {
               const low = p.stock <= p.minStock;
               const stockPct = p.minStock > 0
@@ -163,12 +156,8 @@ export default function ProductsPage() {
                 : 100;
 
               return (
-                <motion.div
+                <div
                   key={p.id}
-                  layout
-                  variants={{ hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0 } }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ type: "spring", stiffness: 260, damping: 24 }}
                 >
                   <Card interactive className="flex flex-col gap-3 h-full">
                     <div className="flex items-start justify-between gap-3">
@@ -261,11 +250,10 @@ export default function ProductsPage() {
                       </div>
                     )}
                   </Card>
-                </motion.div>
+                </div>
               );
             })}
-          </AnimatePresence>
-        </motion.div>
+        </div>
       )}
 
       {/* Pagination */}

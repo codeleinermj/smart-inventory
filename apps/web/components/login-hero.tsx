@@ -128,7 +128,7 @@ export function LoginHero() {
 
       {/* Copy */}
       <div className="relative z-10">
-        <p className="text-xs uppercase tracking-[0.3em] text-[var(--color-fg-muted)]">
+        <p className="text-xs uppercase tracking-[0.3em] text-[var(--color-fg-muted)] font-[family-name:var(--font-michroma)]">
           Smart Inventory
         </p>
       </div>
@@ -136,7 +136,7 @@ export function LoginHero() {
       <div className="relative z-10">
         <h2
           data-hero-title
-          className="text-5xl font-semibold leading-tight text-[var(--color-fg)]"
+          className="text-5xl font-semibold leading-tight text-[var(--color-fg)] font-[family-name:var(--font-michroma)]"
         >
           <span className="inline-block">Inventario</span>{" "}
           <span className="inline-block">que</span>{" "}

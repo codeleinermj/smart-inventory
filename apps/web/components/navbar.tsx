@@ -1,24 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { useMe, useLogout } from "@/lib/client/hooks/use-auth";
 import { Button } from "./ui/button";
 
-/**
- * Top bar used on authenticated pages. Shows the current user + a logout
- * button. Slides in from above on mount.
- */
 export function Navbar() {
   const { data: user } = useMe();
   const logout = useLogout();
 
   return (
-    <motion.header
-      initial={{ y: -40, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ type: "spring", stiffness: 220, damping: 24 }}
-      className="sticky top-0 z-30 border-b border-[var(--color-border)] bg-[var(--color-bg)]/80 backdrop-blur-md"
+    <header
+      className="fixed top-0 left-0 right-0 z-30 border-b border-[var(--color-border)] bg-[var(--color-bg)]"
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
         <div className="flex items-center gap-6">
@@ -68,6 +60,6 @@ export function Navbar() {
           </Button>
         </div>
       </div>
-    </motion.header>
+    </header>
   );
 }

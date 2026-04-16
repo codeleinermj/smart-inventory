@@ -38,7 +38,7 @@ export function LoginForm() {
       className="w-full max-w-md"
     >
       <div className="mb-8">
-        <h1 className="text-3xl font-semibold tracking-tight text-[var(--color-fg)]">
+        <h1 className="text-3xl font-semibold tracking-tight text-[var(--color-fg)] font-[family-name:var(--font-michroma)]">
           Bienvenido
         </h1>
         <p className="mt-2 text-[var(--color-fg-muted)]">

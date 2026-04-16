@@ -1,13 +1,12 @@
 "use client";
 
-import { forwardRef, type ReactNode } from "react";
-import { motion, useReducedMotion, type HTMLMotionProps } from "framer-motion";
+import { forwardRef, type ButtonHTMLAttributes, type ReactNode } from "react";
 import { cn } from "@/lib/cn";
 
 type Variant = "primary" | "secondary" | "ghost" | "danger";
 type Size = "sm" | "md" | "lg";
 
-interface ButtonProps extends HTMLMotionProps<"button"> {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: Variant;
   size?: Size;
   loading?: boolean;
@@ -16,6 +15,7 @@ interface ButtonProps extends HTMLMotionProps<"button"> {
 const base =
   "inline-flex items-center justify-center gap-2 rounded-xl font-medium " +
   "transition-colors disabled:opacity-50 disabled:cursor-not-allowed " +
+  "active:brightness-95 " +
   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 " +
   "focus-visible:ring-offset-[var(--color-bg)] focus-visible:ring-[var(--color-brand)]";
 
@@ -40,16 +40,11 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
   { variant = "primary", size = "md", className, loading, disabled, children, type, ...rest },
   ref
 ) {
-  const reduce = useReducedMotion();
-
   return (
-    <motion.button
+    <button
       ref={ref}
       type={type ?? "button"}
       disabled={disabled || loading}
-      whileHover={reduce ? undefined : { scale: 1.02 }}
-      whileTap={reduce ? undefined : { scale: 0.98 }}
-      transition={{ type: "spring", stiffness: 400, damping: 28 }}
       className={cn(base, variants[variant], sizes[size], className)}
       {...rest}
     >
@@ -60,6 +55,6 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
         />
       )}
       {children as ReactNode}
-    </motion.button>
+    </button>
   );
 });

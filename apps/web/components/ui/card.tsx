@@ -1,10 +1,9 @@
 "use client";
 
-import { forwardRef } from "react";
-import { motion, type HTMLMotionProps } from "framer-motion";
+import { forwardRef, type HTMLAttributes } from "react";
 import { cn } from "@/lib/cn";
 
-type CardProps = HTMLMotionProps<"div"> & {
+type CardProps = HTMLAttributes<HTMLDivElement> & {
   interactive?: boolean;
 };
 
@@ -13,15 +12,13 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(function Card(
   ref
 ) {
   return (
-    <motion.div
+    <div
       ref={ref}
-      whileHover={interactive ? { y: -2, borderColor: "var(--color-border-hover)" } : undefined}
-      transition={{ type: "spring", stiffness: 300, damping: 25 }}
       className={cn(
         "rounded-2xl border border-[var(--color-border)] bg-[var(--color-bg-card)]",
         "shadow-[0_10px_40px_-10px_rgba(0,0,0,0.6)]",
-        "p-6",
-        interactive && "cursor-pointer",
+        "p-6 transition-colors duration-200",
+        interactive && "cursor-pointer hover:border-[var(--color-border-hover)]",
         className
       )}
       {...rest}
