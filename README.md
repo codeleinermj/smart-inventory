@@ -2,8 +2,8 @@
 
 <p align="center">
   <img src="docs/screenshots/login.png" width="32%" alt="Login" />
-  <img src="docs/screenshots/02-dashboard.png" width="32%" alt="Dashboard" />
-  <img src="docs/screenshots/products.png" width="32%" alt="Productos" />
+  <img src="docs/screenshots/dashh.png" width="32%" alt="Dashboard" />
+  <img src="docs/screenshots/03-products.png" width="32%" alt="Productos" />
 </p>
 
 ## Objetivo del proyecto
