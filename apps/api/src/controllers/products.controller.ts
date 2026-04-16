@@ -9,7 +9,7 @@ export async function list(
   try {
     // req.query has been replaced by validate() with a parsed/typed object.
     const result = await productsService.list(
-      req.query as unknown as { limit: number; offset: number }
+      req.query as unknown as { limit: number; offset: number; status: "ok" | "all" | "low"; search?: string }
     );
     res.status(200).json(result);
   } catch (err) {
