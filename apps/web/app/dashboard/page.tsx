@@ -12,7 +12,7 @@ const cardVariants = {
   show: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.07, type: "spring", stiffness: 260, damping: 24 },
+    transition: { delay: i * 0.07, type: "spring" as const, stiffness: 260, damping: 24 },
   }),
 };
 
