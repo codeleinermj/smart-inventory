@@ -1,5 +1,10 @@
 # Smart Inventory
 
+<p align="center">
+  <img src="docs/screenshots/02-dashboard.png" width="48%" alt="Dashboard" />
+  <img src="docs/screenshots/03-products.png" width="48%" alt="Productos" />
+</p>
+
 ## Objetivo del proyecto
 
 Smart Inventory es una plataforma de gestión de inventario diseñada para pequeñas y medianas empresas que necesitan controlar su stock en tiempo real sin depender de hojas de cálculo o software costoso.
