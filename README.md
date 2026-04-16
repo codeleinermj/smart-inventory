@@ -1,5 +1,25 @@
 # Smart Inventory
 
+## Objetivo del proyecto
+
+Smart Inventory es una plataforma de gestión de inventario diseñada para pequeñas y medianas empresas que necesitan controlar su stock en tiempo real sin depender de hojas de cálculo o software costoso.
+
+### Qué problema soluciona
+
+Las empresas pierden dinero de dos formas opuestas: **sobrestock** (capital inmovilizado, productos vencidos o sin rotación) y **quiebre de stock** (ventas perdidas, clientes insatisfechos). Hoy ese equilibrio se maneja manualmente — alguien revisa planillas, hace estimaciones a ojo y pide de más "por las dudas".
+
+Smart Inventory soluciona esto con tres pilares:
+
+1. **Visibilidad en tiempo real** — panel centralizado con estado de stock, alertas de mínimos y valor total del inventario, accesible desde cualquier dispositivo.
+2. **Predicción de demanda con ML** — el sistema analiza el histórico de movimientos y predice cuándo un producto va a llegar a su mínimo, adelantándose al quiebre antes de que ocurra.
+3. **Control de acceso por roles** — los administradores gestionan productos y ven predicciones; los operadores registran movimientos sin poder alterar la configuración base.
+
+### A quién está dirigido
+
+Negocios con inventario físico: distribuidoras, comercios, depósitos, laboratorios o cualquier operación donde el stock sea un activo crítico.
+
+---
+
 Sistema de gestión de inventario con predicción de stock basada en ML. Monorepo con tres servicios: API REST (Node.js), servicio ML (Python/FastAPI) y frontend web (Next.js).
 
 ---
